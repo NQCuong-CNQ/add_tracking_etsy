@@ -16,10 +16,11 @@ var socket = io.connect("https://giftsvk.com", {
 
 server.listen(5555)
 
-main()
+main()  
 async function main() {
   
   socket.on("test", async function (data) {
     console.log(data)
   })
 }
+ 
