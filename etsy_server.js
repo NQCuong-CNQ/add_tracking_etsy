@@ -7,9 +7,7 @@ var socket = io.connect("https://giftsvk.com", {
 const sendkeys = require('sendkeys-js/index.js')
 
 socket.on("track-order-step2", async function (data) {
-  console.log('step 1')
   if (data['name'] == 'AnthonyEJ') {
-    console.log('step 2')
     sendkeys.send('^{f}')
     await sleep(1000)
     sendkeys.send('{i}{t}{e}{m}')
@@ -20,7 +18,7 @@ socket.on("track-order-step2", async function (data) {
     await sleep(1000)
 
     if (data['number_tracking'].startsWith('9')) {
-      sendkeys.send('{BACKSPACE}')
+      sendkeys.send('{ }')
       await sleep(1000)
       sendkeys.send('{DOWN}')
       await sleep(500)
@@ -50,7 +48,6 @@ socket.on("track-order-step2", async function (data) {
     }
 
     sendkeys.send('{TAB}')
-
     console.log(data)
 
     let number = data['number_tracking'].split('')
@@ -62,7 +59,6 @@ socket.on("track-order-step2", async function (data) {
     await sleep(2000)
     sendkeys.send('{ESC}')
     socket.emit('track-order-step3', data['name'])
-    console.log('step 3')
   }
 })
 
