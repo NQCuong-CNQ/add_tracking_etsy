@@ -56,8 +56,6 @@ socket.on("track-order-step2", async function (data) {
       await sleep(50)
     }
 
-    await sleep(2000)
-    sendkeys.send('{ESC}')
     socket.emit('track-order-step3', data['name'])
   }
 })
