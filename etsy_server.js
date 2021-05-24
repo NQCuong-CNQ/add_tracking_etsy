@@ -7,7 +7,9 @@ var socket = io.connect("https://giftsvk.com", {
 const sendkeys = require('sendkeys-js/index.js')
 
 socket.on("track-order-step2", async function (data) {
-  if(data['name'] == 'lynLL'){
+  console.log('step 1')
+  if (data['name'] == 'AnthonyEJ') {
+    console.log('step 2')
     sendkeys.send('^{f}')
     await sleep(1000)
     sendkeys.send('{i}{t}{e}{m}')
@@ -16,6 +18,37 @@ socket.on("track-order-step2", async function (data) {
     await sleep(1000)
     sendkeys.send('{TAB}')
     await sleep(1000)
+
+    if (data['number_tracking'].startsWith('9')) {
+      sendkeys.send('{BACKSPACE}')
+      await sleep(1000)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{DOWN}')
+      await sleep(500)
+      sendkeys.send('{ENTER}')
+      await sleep(500)
+
+      sendkeys.send('{TAB}')
+      await sleep(1000)
+      sendkeys.send('{U}')
+      await sleep(50)
+      sendkeys.send('{S}')
+      await sleep(50)
+      sendkeys.send('{P}')
+      await sleep(50)
+      sendkeys.send('{S}')
+      await sleep(50)
+    }
+
     sendkeys.send('{TAB}')
 
     console.log(data)
@@ -23,12 +56,13 @@ socket.on("track-order-step2", async function (data) {
     let number = data['number_tracking'].split('')
     for (let i = 0; i < number.length; i++) {
       sendkeys.send(`{${number[i]}}`)
-      await sleep(30)
+      await sleep(50)
     }
 
     await sleep(2000)
     sendkeys.send('{ESC}')
     socket.emit('track-order-step3', data['name'])
+    console.log('step 3')
   }
 })
 
